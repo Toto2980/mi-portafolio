@@ -191,6 +191,65 @@
     .project-card .content {
         padding:1rem;
     }
+    /* Custom styling for project media sections */
+    .project-media {
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+    /* 24N card uses the swirling background image */
+    .media-24n {
+        background: url('assets/bg-olas.jpg') center/cover no-repeat;
+    }
+    .media-24n::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, rgba(0,0,0,0.25), rgba(0,0,0,0.25));
+    }
+    .project-media-title {
+        position: relative;
+        z-index: 1;
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 1.75rem;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.45);
+    }
+
+    /* Override header to use swirling background image and reduce height */
+    header {
+        background: url('assets/bg-olas.jpg') center/cover no-repeat;
+        min-height: 48vh;
+    }
+
+    /* Compact hero padding */
+    .hero {
+        padding: 3rem 1rem;
+    }
+
+    /* Override the first project's media background (24Norte card) to use the swirling image */
+    .projects .project-card:first-child .project-media {
+        background-image: url('assets/bg-olas.jpg') !important;
+        background-size: cover !important;
+        background-position: center !important;
+    }
+    .projects .project-card:first-child .project-media::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, rgba(0,0,0,0.25), rgba(0,0,0,0.25));
+    }
+    .projects .project-card:first-child .project-media span {
+        position: relative;
+        z-index: 1;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #ffffff;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.45);
+    }
     /* Ensure embedded iframes (e.g., CodePen demos) scale properly within project cards */
     .project-card iframe {
         width: 100%;
@@ -323,33 +382,21 @@
 <h2 class="section-title">Contacto</h2>
 <p>¿Quieres colaborar o tienes alguna pregunta? No dudes en contactarme.</p>
 <p>Puedes escribirme a <a href="mailto:worklocastro@gmail.com">worklocastro@gmail.com</a> o llamarme al <a href="tel:+541170608357">+54&nbsp;11&nbsp;7060&nbsp;8357</a>.</p>
-<!-- Contact form sends data via the user's email client using mailto. -->
-<!-- CONTACTO (Formspree) -->
-<form action="https://formspree.io/f/xpwjblyz" method="POST" class="contact-form" accept-charset="UTF-8">
-  <!-- Accesible y validado -->
-
-  <input id="name" name="name" type="text" placeholder="Tu nombre" required autocomplete="name" />
-
-
-  <input id="email" name="email" type="email" placeholder="Tu correo" required autocomplete="email" />
-
-  
-  <textarea id="message" name="message" rows="4" placeholder="Tu mensaje" required></textarea>
-
-  <!-- Meta-opciones de Formspree -->
-  <!-- Asunto del correo -->
-  <input type="hidden" name="subject" value="Nuevo mensaje desde el portafolio" />
-  <!-- Idioma de la página de confirmación de Formspree -->
-  <input type="hidden" name="_language" value="es" />
-  <!-- Redirección después de enviar (opcional). Cambia por tu dominio real -->
-    <input type="hidden" name="_next" value="https://toto2980.github.io/portfolio.html#contact" />
-
-  <!-- Honeypot anti-spam (no borres). Si un bot lo rellena, Formspree lo ignora -->
-  <input type="text" name="_honeypot" tabindex="-1" autocomplete="off" style="position:absolute;left:-5000px;opacity:0;" />
-
-  <button class="btn" type="submit">Enviar mensaje</button>
+<!-- Contact form uses Formspree to send messages directly to my email.
+     See https://formspree.io/html/ for details on configuring an HTML form with Formspree【715439482362818†L48-L65】. -->
+<form action="https://formspree.io/f/xpwjblyz" method="POST">
+  <!-- Each field needs a name attribute so Formspree captures the values【715439482362818†L48-L65】. -->
+  <input type="text" name="name" placeholder="Tu nombre" required>
+  <input type="email" name="email" placeholder="Tu correo" required>
+  <textarea name="message" placeholder="Tu mensaje" rows="4" required></textarea>
+  <!-- Customize the subject line of the email that Formspree sends. -->
+  <input type="hidden" name="_subject" value="Nuevo mensaje desde el portafolio">
+  <!-- Disable Formspree's built‑in CAPTCHA; remove this line to enable spam protection. -->
+  <input type="hidden" name="_captcha" value="false">
+  <!-- Optional: redirect to a custom thank you page after submission.
+       <input type="hidden" name="_next" value="https://tudominio.com/thank-you.html"> -->
+  <button class="btn" type="submit">Enviar Mensaje</button>
 </form>
-
 <p style="margin-top:1rem; text-align:center;">También puedes encontrarme en <a href="https://github.com/Toto2980" target="_blank">GitHub</a> y <a href="https://www.linkedin.com/in/tobias-locastro-46ba3121a" target="_blank">LinkedIn</a>.</p>
 </section>
 <footer>
